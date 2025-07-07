@@ -25,18 +25,18 @@
       padding: 40px 20px;
     }
 
-    h1 {
+    h1, h2 {
       color: var(--accent);
-      margin-bottom: 10px;
     }
 
     .container {
       background-color: var(--card);
       padding: 30px;
       border-radius: 10px;
-      max-width: 600px;
+      max-width: 800px;
       width: 100%;
       box-shadow: 0 0 15px rgba(0,255,255,0.1);
+      margin-bottom: 40px;
     }
 
     input {
@@ -59,6 +59,7 @@
       font-size: 1rem;
       cursor: pointer;
       font-weight: bold;
+      margin-bottom: 20px;
     }
 
     button:hover {
@@ -80,6 +81,21 @@
     .success {
       color: #00e1e1;
     }
+
+    code {
+      background-color: #1a1a2a;
+      padding: 4px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.95rem;
+      display: block;
+      margin: 10px 0;
+    }
+
+    ol {
+      padding-left: 20px;
+    }
+
   </style>
 </head>
 <body>
@@ -91,8 +107,23 @@
     <input id="warpLink" type="text" placeholder="Contoh: https://api-os-takumi.mihoyo.com/common/gacha_record/api/getGachaLog..." />
 
     <button onclick="importWarp()">Import</button>
-
     <div id="output"></div>
+  </div>
+
+  <div class="container">
+    <h2>📜 Cara Mendapatkan Warp Link</h2>
+    <ol>
+      <li>Buka PowerShell (tekan <strong>Windows + R</strong> lalu ketik <code>powershell</code>).</li>
+      <li>Copy dan paste kode ini di PowerShell:</li>
+      <code>
+        [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12;<br>
+        Invoke-Expression (New-Object Net.WebClient).DownloadString("https://gist.githubusercontent.com/Star-Rail-Station/2512df54c4f35d399cc9abbde665e8f0/raw/get_warp_link_os.ps1?cachebust=srs")
+      </code>
+      <li>Tekan Enter dan tunggu sampai muncul link warp kamu.</li>
+      <li>Copy link tersebut, lalu tempel ke kolom input di atas.</li>
+    </ol>
+
+    <p><strong>Tips:</strong> Pastikan kamu pernah membuka menu warp di game agar log-nya tersedia.</p>
   </div>
 
   <script>
@@ -123,4 +154,3 @@
 
 </body>
 </html>
-
