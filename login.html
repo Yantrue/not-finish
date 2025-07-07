@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Admin Login</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -13,7 +14,28 @@
     <button onclick="login()">Login</button>
     <p id="error" class="error-text"></p>
   </div>
-  <script src="script.js"></script>
+
+  <script>
+    function login() {
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      const errorEl = document.getElementById('error');
+
+      if(user === 'admin' && pass === 'admin123') {
+        // Simpan status login di localStorage
+        localStorage.setItem('isLoggedIn', 'true');
+        // Redirect ke dashboard
+        window.location.href = 'index.html';
+      } else {
+        errorEl.textContent = 'Username atau password salah!';
+      }
+    }
+
+    // Jika sudah login, langsung redirect ke dashboard
+    if(localStorage.getItem('isLoggedIn') === 'true') {
+      window.location.href = 'index.html';
+    }
+  </script>
 </body>
 </html>
 
