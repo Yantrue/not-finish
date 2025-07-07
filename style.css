@@ -1,126 +1,21 @@
-:root {
-  --bg: #f4f4f7;
-  --sidebar-bg: #2f3e46;
-  --sidebar-text: #cad2c5;
-  --primary: #52796f;
-  --primary-hover: #409080;
-  --card-bg: #ffffff;
-  --text: #333333;
-  --danger: #e63946;
-}
-
+/* Style umum untuk body */
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: var(--bg);
-  color: var(--text);
-}
-
-.login-page {
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0d0d18;
+  color: #e0e0e0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
+/* Styling khusus untuk halaman login */
+body.login-page {
+  background: linear-gradient(135deg, #00c7c7, #005f5f);
+}
+
+/* Card login */
 .login-card {
-  background: var(--card-bg);
-  padding: 40px;
-  width: 320px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  text-align: center;
-}
-
-.login-card input {
-  width: 100%;
-  padding: 12px;
-  margin: 12px 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.login-card button {
-  width: 100%;
-  padding: 12px;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.error-text {
-  color: var(--danger);
-  margin-top: 10px; 
-}
-
-.sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 240px;
-  height: 100vh;
-  background: var(--sidebar-bg);
-  color: var(--sidebar-text);
-  padding: 20px;
-}
-
-.brand {
-  font-size: 1.5rem;
-  margin-bottom: 30px;
-  color: white;
-}
-
-.sidebar-menu {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar-item {
-  margin: 16px 0;
-  cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 4px;
-}
-
-.sidebar-item:hover, .sidebar-item.active {
-  background: var(--primary);
-  color: white;
-}
-
-.main-content {
-  margin-left: 260px;
-  padding: 20px;
-}
-
-.topbar {
-  margin-bottom: 20px;
-}
-
-.btn {
-  padding: 10px 16px;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.data-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 18px;
-  background: var(--card-bg);
-}
-
-.data-table th, .data-table td {
-  padding: 12px;
-  border: 1px solid #ddd;
-}
-
-.data-table th {
-  background: var(--primary);
-  color: white;
-}
-
+  backgr
