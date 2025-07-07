@@ -2,178 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Import Warp Data & Tutorial</title>
-  <style>
-    :root {
-      --bg: #0d0d18;
-      --text: #e0e0e0;
-      --accent: #00c7c7;
-      --card: #151525;
-      --link: #00e1e1;
-    }
-
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      padding: 40px 20px;
-    }
-
-    h1, h2 {
-      color: var(--accent);
-    }
-
-    .container {
-      background-color: var(--card);
-      padding: 30px;
-      border-radius: 10px;
-      max-width: 800px;
-      width: 100%;
-      box-shadow: 0 0 15px rgba(0,255,255,0.1);
-      margin-bottom: 40px;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: none;
-      margin-bottom: 20px;
-      background-color: #1f1f30;
-      color: white;
-    }
-
-    button {
-      background-color: var(--accent);
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 5px;
-      font-size: 1rem;
-      cursor: pointer;
-      font-weight: bold;
-      margin-bottom: 20px;
-    }
-
-    button:hover {
-      background-color: #00a0a0;
-    }
-
-    #output {
-      margin-top: 20px;
-      background-color: #1a1a2a;
-      padding: 15px;
-      border-radius: 5px;
-      font-size: 0.95rem;
-    }
-
-    .error {
-      color: #ff6161;
-    }
-
-    .success {
-      color: #00e1e1;
-    }
-
-    code {
-      background-color: #1a1a2a;
-      padding: 4px 6px;
-      border-radius: 4px;
-      font-family: monospace;
-      font-size: 0.95rem;
-      display: block;
-      margin: 10px 0;
-      white-space: pre-wrap;
-    }
-
-    ol {
-      padding-left: 20px;
-    }
-
-    a {
-      color: var(--link);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .links-list li {
-      margin-bottom: 8px;
-    }
-  </style>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <div class="container">
-    <h1>Import Warp Data</h1>
-    <p>Tempelkan link warp kamu dari Honkai: Star Rail</p>
-
-    <input id="warpLink" type="text" placeholder="Contoh: https://api-os-takumi.mihoyo.com/common/gacha_record/api/getGachaLog..." />
-
-    <button onclick="importWarp()">Import</button>
-    <div id="output"></div>
-  </div>
-
-  <div class="container">
-    <h2>📜 Cara Mendapatkan Warp Link</h2>
-    <ol>
-      <li>Buka PowerShell (tekan <strong>Windows + R</strong> lalu ketik <code>powershell</code>).</li>
-      <li>Copy dan paste kode ini di PowerShell:</li>
-      <code>
-[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12; Invoke-Expression (New-Object Net.WebClient).DownloadString("https://gist.githubusercontent.com/Star-Rail-Station/2512df54c4f35d399cc9abbde665e8f0/raw/get_warp_link_os.ps1?cachebust=srs")
-      </code>
-      <li>Tekan Enter dan tunggu sampai muncul link warp kamu.</li>
-      <li>Copy link tersebut, lalu tempel ke kolom input di atas.</li>
-    </ol>
-
-    <p><strong>Tips:</strong> Pastikan kamu sudah membuka menu warp di game agar log-nya tersedia.</p>
-  </div>
-
-  <div class="container">
-    <h2>🔗 Link Penting Star Rail Station</h2>
-    <ul class="links-list">
-      <li><a href="https://starrailstation.com/en/warp#char_event" target="_blank" rel="noopener noreferrer">Character Event</a></li>
-      <li><a href="https://starrailstation.com/en/warp#lc_event" target="_blank" rel="noopener noreferrer">Light Cone Event</a></li>
-      <li><a href="https://starrailstation.com/en/warp#stellar" target="_blank" rel="noopener noreferrer">Stellar Jade Event</a></li>
+  <div class="sidebar">
+    <h2>Admin</h2>
+    <ul>
+      <li><a href="#">Dashboard</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
     </ul>
   </div>
-
-  <script>
-    function importWarp() {
-      const link = document.getElementById("warpLink").value.trim();
-      const output = document.getElementById("output");
-
-      if (!link || !link.includes("getGachaLog")) {
-        output.innerHTML = `<p class="error">⚠️ Link tidak valid. Pastikan kamu menyalin link warp dari game.</p>`;
-        return;
-      }
-
-      output.innerHTML = `<p class="success">✅ Link valid! Mengambil data warp (simulasi)...</p>`;
-
-      // Simulasi ambil data
-      setTimeout(() => {
-        output.innerHTML += `
-          <p class="success">🎉 Data berhasil diambil!</p>
-          <ul>
-            <li><strong>Nama Pemain:</strong> Trailblazer</li>
-            <li><strong>Total Warp:</strong> 92</li>
-            <li><strong>5★ Diperoleh:</strong> Bronya, Yanqing</li>
-          </ul>
-        `;
-      }, 1000);
-    }
-  </script>
-
+  <div class="main-content">
+    <h1>Dashboard</h1>
+    <button onclick="addData()">➕ Tambah Data</button>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th>Nama</th><th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="dataTable"></tbody>
+    </table>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
+
