@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HSR Warp Tracker</title>
+  <title>Import Warp Data</title>
   <style>
     :root {
-      --bg: #0f0f1a;
+      --bg: #0d0d18;
       --text: #e0e0e0;
-      --accent: #00bcd4;
-      --nav-bg: #1a1a2e;
-      --section-bg: #141421;
+      --accent: #00c7c7;
+      --card: #151525;
     }
 
     body {
@@ -19,100 +18,108 @@
       font-family: 'Segoe UI', sans-serif;
       background-color: var(--bg);
       color: var(--text);
-      line-height: 1.6;
-    }
-
-    header {
-      background-color: var(--section-bg);
-      padding: 40px 20px;
-      text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.2em;
-      color: var(--accent);
-    }
-
-    nav {
-      position: sticky;
-      top: 0;
-      background-color: var(--nav-bg);
       display: flex;
-      justify-content: center;
-      gap: 40px;
-      padding: 12px 0;
-      z-index: 10;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    }
-
-    nav a {
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: var(--accent);
-      text-decoration: underline;
-    }
-
-    section {
-      background-color: var(--section-bg);
-      margin: 40px auto;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
       padding: 40px 20px;
-      max-width: 800px;
-      border-radius: 8px;
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
     }
 
-    section h2 {
+    h1 {
       color: var(--accent);
-      margin-bottom: 16px;
+      margin-bottom: 10px;
     }
 
-    section p {
+    .container {
+      background-color: var(--card);
+      padding: 30px;
+      border-radius: 10px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 0 15px rgba(0,255,255,0.1);
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
       font-size: 1rem;
-      opacity: 0.9;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 20px;
+      background-color: #1f1f30;
+      color: white;
     }
 
-    @media (max-width: 600px) {
-      nav {
-        flex-direction: column;
-        gap: 10px;
-      }
+    button {
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #00a0a0;
+    }
+
+    #output {
+      margin-top: 20px;
+      background-color: #1a1a2a;
+      padding: 15px;
+      border-radius: 5px;
+      font-size: 0.95rem;
+    }
+
+    .error {
+      color: #ff6161;
+    }
+
+    .success {
+      color: #00e1e1;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>HSR Warp Tracker</h1>
-    <p>Lacak dan analisis hasil warp kamu secara akurat</p>
-  </header>
+  <div class="container">
+    <h1>Import Warp Data</h1>
+    <p>Tempelkan link warp kamu dari Honkai: Star Rail</p>
 
-  <nav>
-    <a href="#overview">Overview</a>
-    <a href="#warp">Warp Tracker</a>
-    <a href="#statistics">Statistics</a>
-  </nav>
+    <input id="warpLink" type="text" placeholder="Contoh: https://api-os-takumi.mihoyo.com/common/gacha_record/api/getGachaLog..." />
 
-  <section id="overview">
-    <h2>Overview</h2>
-    <p>Selamat datang di halaman pelacak warp Honkai: Star Rail. Di sini kamu bisa memantau riwayat gacha-mu dan menghitung peluang pity.</p>
-  </section>
+    <button onclick="importWarp()">Import</button>
 
-  <section id="warp">
-    <h2>Warp Tracker</h2>
-    <p>Bagian ini akan menampilkan input data warp, banner yang aktif, dan fitur lainnya. Bisa dikembangkan pakai JavaScript nanti.</p>
-  </section>
+    <div id="output"></div>
+  </div>
 
-  <section id="statistics">
-    <h2>Statistics</h2>
-    <p>Lihat data statistik total warp, bintang 5, rate up, dan rerata pity di sini.</p>
-  </section>
+  <script>
+    function importWarp() {
+      const link = document.getElementById("warpLink").value.trim();
+      const output = document.getElementById("output");
+
+      if (!link || !link.includes("getGachaLog")) {
+        output.innerHTML = `<p class="error">⚠️ Link tidak valid. Pastikan kamu menyalin link warp dari game.</p>`;
+        return;
+      }
+
+      output.innerHTML = `<p class="success">✅ Link valid! Mengambil data warp (simulasi)...</p>`;
+
+      // Simulasi ambil data
+      setTimeout(() => {
+        output.innerHTML += `
+          <p class="success">🎉 Data berhasil diambil!</p>
+          <ul>
+            <li><strong>Nama Pemain:</strong> Trailblazer</li>
+            <li><strong>Total Warp:</strong> 92</li>
+            <li><strong>5★ Diperoleh:</strong> Bronya, Yanqing</li>
+          </ul>
+        `;
+      }, 1000);
+    }
+  </script>
 
 </body>
 </html>
